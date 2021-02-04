@@ -3,11 +3,23 @@ import apiKey from './apiKey.js';
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
 
+let ready = false;
+let imagesLoaded = 0;
+let totalImages = 0;
 let photosArray = [];
 
 // configuracion de unsplash api
-const count = 10;
+const count = 5;
 const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
+
+// comprueba que se hayan cargado todas las imagenes
+const imageLoaded = () => {
+  imagesLoaded++;
+  if (imagesLoaded === totalImages) {
+    ready = true;
+    loader.style.visibility = 'hidden';
+  }
+};
 
 // setea los atributos
 const setAttributes = (element, attributes) => {
@@ -18,6 +30,8 @@ const setAttributes = (element, attributes) => {
 
 // crea el elemento de fotos y los agrega al DOM
 const displayPhotos = () => {
+  imagesLoaded = 0;
+  totalImages = photosArray.length;
   photosArray.forEach((photo) => {
     // elemento contenedor
     const div = document.createElement('div');
@@ -55,6 +69,9 @@ const displayPhotos = () => {
       title: photo.alt_description,
     });
 
+    // chequea si se termino de cargar todo el card
+    img.addEventListener('load', imageLoaded);
+
     // une los elementos
     div.appendChild(item);
     iconsContainer.appendChild(likes);
@@ -70,7 +87,6 @@ const getPhotos = async () => {
   try {
     const response = await fetch(apiUrl);
     photosArray = await response.json();
-    console.log(photosArray);
     displayPhotos();
   } catch (error) {
     console.log(error);
@@ -80,11 +96,11 @@ const getPhotos = async () => {
 // chequea si esta al final de la pagina para cargar mas fotos
 window.addEventListener('scroll', () => {
   if (
-    window.innerHeight + window.scrollY >=
-    document.body.offsetHeight - 1000
+    window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 &&
+    ready
   ) {
-    //getPhotos();
-    console.log('load more');
+    ready = false;
+    getPhotos();
   }
 });
 
