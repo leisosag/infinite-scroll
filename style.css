@@ -44,6 +44,26 @@ h1 {
   width: 100%;
   margin-top: 0.5rem;
 }
+/***** CARD *****/
+.card-container {
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+.icons-container {
+  display: flex;
+  justify-content: space-between;
+}
+.likes,
+.views,
+.username {
+  color: var(--oscuro);
+  padding: 1rem 0;
+}
+.username {
+  text-decoration: none;
+}
 /***** MOBILE *****/
 @media screen and (max-width: 600px) {
   h1 {
