@@ -1,9 +1,55 @@
-
-html {
-  box-sizing: border-box;
+:root {
+  --rosa: #ffb6bb;
+  --amarillo: #ffe691;
+  --celeste: #95d5ee;
+  --oscuro: #585872;
 }
-
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+body {
   min-height: 100vh;
+  font-family: 'Rubik', sans-serif;
+  background: whitesmoke;
+}
+h1 {
+  letter-spacing: 0.1rem;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+/***** SPINNER *****/
+.loader {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.loader img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/***** IMAGENES *****/
+.image-container {
+  margin: 1rem 30%;
+}
+.image-container img {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+/***** MOBILE *****/
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+  .image-container {
+    margin: 1rem;
+  }
 }
