@@ -10,7 +10,8 @@ let photosArray = [];
 
 // configuracion de unsplash api
 let count = 5;
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
+const key = 'zzFLSPVVjG1j4Yp3eDtF5Cvj9tCnFn9p_e1G6k0aVoc';
+const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${key}&count=${count}`;
 
 // comprueba que se hayan cargado todas las imagenes
 const imageLoaded = () => {
